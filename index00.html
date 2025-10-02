@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Мои данные — Профиль</title>
+  <style>
+    /* Простой аккуратный стиль */
+    :root{
+      --bg:#f7f8fb;
+      --card:#ffffff;
+      --accent:#2b6cb0;
+      --muted:#6b7280;
+      --radius:12px;
+      --maxw:720px;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    body{
+      background:var(--bg);
+      margin:0;
+      padding:32px 16px;
+      display:flex;
+      justify-content:center;
+      color:#111827;
+    }
+    .card{
+      width:100%;
+      max-width:var(--maxw);
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:0 6px 20px rgba(12,15,20,0.06);
+      padding:24px;
+    }
+    header{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:18px;
+    }
+    .avatar{
+      width:84px;
+      height:84px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#e6eefc,#f3f7ff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:var(--accent);
+      font-size:28px;
+      flex-shrink:0;
+    }
+    h1{margin:0;font-size:20px}
+    p.lead{margin:4px 0 0;color:var(--muted)}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .field{
+      background:#fbfdff;
+      border:1px solid #eef2ff;
+      padding:12px;
+      border-radius:8px;
+    }
+    .label{font-size:12px;color:var(--muted);margin-bottom:6px;display:block}
+    .value{font-size:15px;font-weight:600}
+    .full{grid-column:1/-1}
+    .bio{white-space:pre-line;color:#333;margin-top:10px}
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+    a.link{color:var(--accent);text-decoration:none}
+    @media (max-width:560px){
+      .grid{grid-template-columns:1fr}
+      header{gap:12px}
+      .avatar{width:64px;height:64px;font-size:22px;border-radius:10px}
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-label="Профиль пользователя">
+    <header>
+      <!-- Автоматическая инициализация аватара по инициалам -->
+      <div class="avatar" id="avatar">ИМ</div>
+      <div>
+        <!-- Заменяй значения ниже на свои -->
+        <h1 id="name">Нурасыл Жолгазинов</h1>
+        <p class="lead" id="occupation">Род деятельности: Студент / Предприниматель</p>
+        <p class="lead" id="location">Город:Семей, Страна:Казахстан</p>
+      </div>
+    </header>
+
+    <section class="grid" aria-label="Контактная информация">
+      <div class="field">
+        <span class="label">Возраст</span>
+        <div class="value" id="age">17</div>
+      </div>
+
+      <div class="field">
+        <span class="label">Email</span>
+        <div class="value"><a class="link" href="mailto:you@example.com" id="email">zholgazinov08@gmail.com</a></div>
+      </div>
+
+      <div class="field">
+        <span class="label">Телефон</span>
+        <div class="value" id="phone">+7 (707) 116-56-47</div>
+      </div>
+
+      <div class="field">
+        <span class="label">Веб-сайт / Портфолио</span>
+        <div class="value"><a class="link" href="https://example.com" id="website" target="_blank" rel="noopener">kxzharkyn.com</a></div>
+      </div>
+
+      <div class="field full">
+        <span class="label">Адрес (полный)</span>
+        <div class="value" id="address">ул. Жумабаева , дом 58, кв. 28, Город:Семей, Страна:Казахстан</div>
+      </div>
+
+      <div class="field full">
+        <span class="label">Социальные сети</span>
+        <div class="value" id="socials">
+          Telegram: @zholgazinov • Instagram: @zholgazinovv • Другие: —
+        </div>
+      </div>
+
+      <div class="field full">
+        <span class="label">Короткое описание / bio</span>
+        <div class="bio" id="bio">Меня зовут Нурасыл и я начнинающий предприниматель и разработчик програм.</div>
+      </div>
+    </section>
+
+    <footer>
+      <!-- Подсказка по редактированию -->
+       
+      
+    </footer>
+  </main>
+
+  <script>
+    // Небольшой скрипт для генерации инициалов в аватаре (если хочешь — оставь)
+    (function(){
+      function initials(name){
+        if(!name) return '';
+        const parts = name.trim().split(/\s+/).slice(0,2);
+        return parts.map(p => p[0]?.toUpperCase() || '').join('');
+      }
+      const nameEl = document.getElementById('name');
+      const avatar = document.getElementById('avatar');
+      avatar.textContent = initials(nameEl.textContent);
+    })();
+  </script>
+</body>
+</html>
